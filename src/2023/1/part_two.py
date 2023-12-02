@@ -1,12 +1,12 @@
 from pathlib import Path
+from commons import utils
 
 
-def main(file_path: Path):
-    with file_path.open(mode="r") as input_file:
-        input_content = input_file.readlines()
-        numbers_list = []
-        for line in input_content:
-            numbers_list.append(parse_numbers(line))
+def main(input_lines: list[str]):
+    numbers_list = []
+    for line in input_lines:
+        numbers_line = [n for n in line if n.isdigit()]
+        numbers_list.append(parse_numbers(line))
 
     return sum(numbers_list)
 
@@ -37,4 +37,4 @@ def parse_numbers(line: str):
 
 
 if __name__ == "__main__":
-    print(main(Path("input.txt")))
+    print(main(utils.read_file(Path(__file__).parent / "input.txt")))
