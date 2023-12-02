@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "advent-of-code-mro"
+version = "0.0.1"
+description = "edvent of code sharing solutions"
+authors = ["Mathieu Roudaut <m.roudaut56@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "commons", from = "src" },
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+exclude = ".venv|build|dist|alembic"
+
+[tool.isort]
+profile = "black"
+src_paths = ["src"]
+skip = [".venv", "build", "dist", "alembic"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+markers = [
+    "disabled: mark a test as disabled."
+]
+
+[tool.coverage.run]
+data_file = "reports/.coverage"
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
+[tool.coverage.xml]
+output = "reports/coverage.xml"
+
+
+[tool.ruff]
+line-length = 120
+[tool.ruff.per-file-ignores]
+# see https://beta.ruff.rs/docs/rules/
+# F401 : unused-import
+"__init__.py" = ["F401"]
