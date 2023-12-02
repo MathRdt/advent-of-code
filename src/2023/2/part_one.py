@@ -14,7 +14,6 @@ def parse_line(input_line: str):
     game_attributes = input_line.split(":")
     game_id = int(game_attributes[0].strip()[5:])
     game_result = {
-        "id": game_id,
         "max_blue": 0,
         "max_red": 0,
         "max_green": 0,
