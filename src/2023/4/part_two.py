@@ -14,7 +14,6 @@ def main(input_lines: list[str]):
                 break
             numbers_list[next_index] += numbers_list[index]
             next_index += 1
-    print(numbers_list)
     return sum(numbers_list)
 
 
