@@ -129,5 +129,4 @@ for start_position in starts_positions:
             new_beam_list += next_beams(current_beam["position"], current_beam["direction"])
         current_beam_list = new_beam_list
     current_counts.append(len(position_cache))
-    print(len(position_cache))
 print(max(current_counts))
