@@ -2,9 +2,6 @@ from pathlib import Path
 import queue
 import copy
 
-# states_history = []
-# states = set()
-
 input = open(Path(__file__).parent / "input.txt").read()
 modules = {}
 for line in input.splitlines():
@@ -35,10 +32,7 @@ for module_name, module_values in modules.items():
 high_pulses = 0
 low_pulses = 0
 current_iteration = 1
-# modules_key = frozenset(modules.items())
 for _ in range(1000):
-    # states.add(modules_key)
-    # states_history.append((modules_key, high_pulses, low_pulses))
     operations = queue.Queue()
     operations.put(("broadcaster", False, "button"))
 
@@ -50,8 +44,6 @@ for _ in range(1000):
             high_pulses += 1
         if (current_module := modules.get(module_name)) is None:
             continue
-        print(current_module)
-        # print(f"{input} --{pulse_type}--> {module_name}")
         if current_module["type"] == "broadcaster":
             for next_module in current_module["next"]:
                 operations.put((next_module, False, module_name))
@@ -68,16 +60,4 @@ for _ in range(1000):
                 operations.put((next_module, next_pulse_type, module_name))
     current_iteration += 1
 
-# print(current_iteration)
-# previous_iteration = 0
-# for iteration, state_history in states_history:
-#     state, previous_high_pulses, previous_low_pulses = state_history
-#     if state == modules_key:
-#         previous_iteration = iteration
-#         break
-# print(previous_iteration)
-
-
-# print(previous_high_pulses)
-# print(previous_low_pulses)
 print(high_pulses * low_pulses)
